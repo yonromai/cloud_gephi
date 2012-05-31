@@ -22,11 +22,11 @@ describe "Static Pages" do
 
   describe "Help page" do
     it 'should have a reference to Gephi.org' do
-      visit '/static_pages/help'
+      visit '/help'
       page.should have_content('Gephi.org')
     end
     it 'should have the right title' do
-      visit '/static_pages/help'
+      visit '/help'
       page.should have_selector('title', :text => "#{base_title} | Help")
     end
 
@@ -34,22 +34,22 @@ describe "Static Pages" do
 
   describe "About page" do
     it 'should have a reference to Gephi.org' do
-      visit '/static_pages/about'
+      visit '/about'
       page.should have_content('Gephi.org')
     end
     it 'should have the right title' do
-      visit '/static_pages/about'
+      visit '/about'
       page.should have_selector('title', :text => "#{base_title} | About Us")
     end
   end
 
   describe "Contact page" do
     it 'should have a reference to Gephi.org' do
-      visit '/static_pages/contact'
+      visit '/contact'
       page.should have_content('Gephi.org')
     end
     it 'should have the right title' do
-      visit '/static_pages/contact'
+      visit '/contact'
       page.should have_selector('title', :text => "#{base_title} | Contact")
     end
   end
