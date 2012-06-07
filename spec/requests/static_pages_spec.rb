@@ -10,7 +10,7 @@ describe "Static Pages" do
     before { visit help_path }
 
     it {page.should have_content('Gephi.org')}
-    it {page.should have_selector('title', :text => "#{base_title} | Help")}
+    it {page.should have_selector('title', text: "#{base_title} | Help")}
 
   end
 
@@ -19,7 +19,7 @@ describe "Static Pages" do
     before { visit about_path }
 
     it {page.should have_content('Gephi.org')}
-    it {page.should have_selector('title', :text => "#{base_title} | About Us")}
+    it {page.should have_selector('title', text: "#{base_title} | About Us")}
   end
 
   describe "Contact page" do
@@ -27,6 +27,6 @@ describe "Static Pages" do
     before { visit contact_path }
 
     it {page.should have_content('Gephi.org')}
-    it {page.should have_selector('title', :text => "#{base_title} | Contact")}
+    it {page.should have_selector('title', text: "#{base_title} | Contact")}
   end
 end

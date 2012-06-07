@@ -10,6 +10,6 @@ describe "HomePages" do
     before { visit root_path }
 
     it { page.should have_content('Gephi.org') }
-    it {page.should have_selector('title', :text => "#{base_title}")}
+    it {page.should have_selector('title', text: "#{base_title}")}
   end
 end
