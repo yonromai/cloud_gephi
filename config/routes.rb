@@ -1,6 +1,6 @@
 CloudGephi::Application.routes.draw do
 
-  get "users/new"
+  resources :users
 
   root to: "home_page#home"
 

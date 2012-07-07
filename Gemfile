@@ -1,3 +1,4 @@
+
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
@@ -22,6 +23,7 @@ gem 'jquery-rails', '2.0.0'
 
 group :test do
   gem 'capybara', '1.1.2'
+  gem 'factory_girl_rails', '1.4.0' #Factory for creating object prior to testing (cf. /spec/factories.rb)
 end
 
 group :production do
