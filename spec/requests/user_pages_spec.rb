@@ -53,9 +53,16 @@ describe "User pages" do
 
   describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
+    let!(:g1) { FactoryGirl.create(:graph, user: user, description: "Foo") }
+    let!(:g2) { FactoryGirl.create(:graph, user: user, description: "Bar") }
     before { visit user_path(user) }
     it { should have_selector('h1',    text: user.name) }
     it { should have_selector('title', text: user.name) }
+    describe "microposts" do
+      it { should have_content(g1.description) }
+      it { should have_content(g2.description) }
+      it { should have_content(user.graphs.count) }
+    end
   end
 
   describe "signup" do

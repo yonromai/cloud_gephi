@@ -1,3 +1,24 @@
 <% provide(:title, 'Home') %>
-<h1>Oooh Home</h1>
-<p>Here goes the amazing graph gallery :D</p>
+<% if signed_in? %> 
+  <div class="row">
+    <aside class="span4">
+      <section>
+        <%= render 'shared/user_info' %> 
+      </section>
+      <section>
+        <%= render 'shared/graph_form' %> 
+      </section>
+    </aside>
+    <div class="span8">
+      <h3>Graph Feed</h3>
+      <%= render 'shared/feed' %> </div>
+    </div>
+<% else %>
+  <div class="center hero-unit">
+    <h1>Welcome to the Cloud Gephi</h1>
+    <h2>
+          Here goes cloud gephi description.
+    </h2>
+    <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+  </div>
+<% end %>

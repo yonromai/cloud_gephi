@@ -1,0 +1,12 @@
+<li>
+  <span class="content"><%= graph.description %></span> 
+  <span class="graphimage"><%= image_tag(graph.image, width: "512") %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(graph.created_at) %> ago. 
+  </span>
+  <% if current_user?(graph.user) %>
+    <%= link_to "delete", graph, method: :delete,
+                                     confirm: "You sure?",
+                                     title: graph.description %>
+  <% end %>
+</li>

@@ -28,6 +28,8 @@ describe User do
   it { should respond_to(:remember_token) }
   it { should respond_to(:admin) }
   it { should respond_to(:authenticate) }
+  it { should respond_to(:graphs) }
+  it { should respond_to(:feed) }
 
   it { should be_valid }
   it { should_not be_admin }
@@ -110,4 +112,36 @@ describe User do
       its(:remember_token) { should_not be_blank }
     end
   end
+
+  describe "graph associations" do
+    before { @user.save }
+    let!(:older_graph) do
+      FactoryGirl.create(:graph, user: @user, created_at: 1.day.ago)
+    end
+    let!(:newer_graph) do
+      FactoryGirl.create(:graph, user: @user, created_at: 1.hour.ago)
+    end
+    it "should have the right graphs in the right order" do
+      @user.graphs.should == [newer_graph, older_graph]
+    end
+
+    it "should destroy associated graphs" do
+     graphs = @user.graphs
+      @user.destroy
+      graphs.each do |graph|
+        Graph.find_by_id(graph.id).should be_nil
+      end
+    end
+
+    describe "status" do
+      let(:unfollowed_post) do
+        FactoryGirl.create(:graph, user: FactoryGirl.create(:user))
+      end
+      its(:feed) { should include(newer_graph) }
+      its(:feed) { should include(older_graph) }
+      its(:feed) { should_not include(unfollowed_post) }
+    end 
+
+  end
+  
 end

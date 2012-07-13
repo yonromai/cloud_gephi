@@ -1,0 +1,7 @@
+<%= form_for(@graph) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %> 
+  <div class="field">
+    <%= f.text_field :description, placeholder: "Post New Graph..." %>
+  </div>
+  <%= f.submit "Post", class: "btn btn-large btn-primary" %> 
+<% end %>

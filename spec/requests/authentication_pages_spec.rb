@@ -75,6 +75,18 @@ describe "Authentication" do
           it { should have_selector('title', text: 'Sign in') }
         end
       end
+
+      describe "in the Graphs controller" do
+        describe "submitting to the create action" do
+          before { post graphs_path }
+          specify { response.should redirect_to(signin_path) }
+        end
+        describe "submitting to the destroy action" do
+          before { delete graph_path(FactoryGirl.create(:graph)) }
+          specify { response.should redirect_to(signin_path) }
+        end 
+      end
+
     end
 
     describe "as wrong user" do

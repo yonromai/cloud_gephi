@@ -14,6 +14,15 @@ namespace :db do
                    email: email,
                    password: password,
                    password_confirmation: password)
-    end 
+    end
+
+    users = User.all(limit: 6)
+    50.times do
+      description = Faker::Lorem.sentence(5)
+      users.each { |user| user.graphs.create!(description: description,
+                                                  image: "https://gephi.org/wp-content/themes/gephi/images/screenshots/layout2.png",
+                                                  source: "https://gephi.org/datasets/eurosis.gexf.zip") }
+    end
+
   end
 end
