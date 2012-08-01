@@ -12,6 +12,8 @@ group :development, :test do
   gem 'sqlite3', '1.3.5'
   gem 'rspec-rails', '2.10.0'
   gem 'annotate', '~> 2.4.1.beta'
+  gem 'spork', '0.9.0'
+  gem 'guard-rspec', '0.5.5'
 end
 
 # Gems used only for assets and not required 
@@ -27,6 +29,22 @@ gem 'jquery-rails', '2.0.0'
 group :test do
   gem 'capybara', '1.1.2'
   gem 'factory_girl_rails', '1.4.0' #Factory for creating object prior to testing (cf. /spec/factories.rb)
+  gem 'guard-spork', '0.3.2'
+  
+  
+  # Test gems on Macintosh OS X
+  gem 'rb-fsevent', '0.4.3.1', :require => false
+  gem 'growl', '1.0.3'
+
+  # Test gems on Linux
+  # gem 'rb-inotify', '0.8.8'
+  # gem 'libnotify', '0.5.9'
+
+  # Test gems on Windows
+  # gem 'rb-fchange', '0.0.5'
+  # gem 'rb-notifu', '0.0.4'
+  # gem 'win32console', '1.3.0'
+
 end
 
 group :production do

@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'spec_helper'
+
 describe "Authentication" do
   subject { page }
   describe "signin page" do
@@ -36,7 +36,7 @@ describe "Authentication" do
 
       describe "followed by signout" do
         before { click_link "Sign out" }
-        it { should have_link('Sign in') }
+        it { should have_link('Sign in') } 
       end
     end
 
