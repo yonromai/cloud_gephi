@@ -1,11 +1,12 @@
 class Graph < ActiveRecord::Base
-  attr_accessible :description, :image, :source
+  attr_accessible :description, :source
   belongs_to :user
   
   validates :description, length: { maximum: 500 }
   validates :user_id, presence: true
-  validates :image, presence: true
   validates :source, presence: true
+
+  mount_uploader :source, GraphFileUploader
 
   default_scope order: 'graphs.created_at DESC'
 

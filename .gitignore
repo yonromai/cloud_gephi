@@ -27,3 +27,6 @@
 */Icon?
 */ehthumbs.db
 */Thumbs.db
+
+# Uploaded files
+/public/uploads

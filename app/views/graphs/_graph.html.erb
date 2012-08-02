@@ -1,6 +1,12 @@
 <li>
   <span class="content"><%= graph.description %></span> 
-  <span class="graphimage"><%= image_tag(graph.image, width: "512") %></span>
+  <span class="graphimage">
+    <% if graph.image.nil? %>
+      <%= image_tag "rendering_graph.gif" %>
+    <% else %>
+      <%= image_tag(graph.image, width: "512") %>
+    <% end %>
+  </span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(graph.created_at) %> ago. 
   </span>

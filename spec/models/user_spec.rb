@@ -149,8 +149,14 @@ describe User do
       before do
         @user.follow!(followed_user)
         3.times { followed_user.graphs.create!(description: "Lorem ipsum",
-                                              image: "https://gephi.org/wp-content/themes/gephi/images/screenshots/layout2.png",
-                                              source: "https://gephi.org/datasets/eurosis.gexf.zip") }
+                                              #image: "https://gephi.org/wp-content/themes/gephi/images/screenshots/layout2.png",
+                                              source: File.open(ENV['PWD'] + "/README.md")) }
+      end
+
+      after do
+        followed_user.graphs.each do |g|
+          g.source.remove!
+        end
       end
 
       its(:feed) { should include(newer_graph) }

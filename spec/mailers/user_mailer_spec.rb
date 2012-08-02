@@ -8,7 +8,7 @@ describe UserMailer do
     it "renders the headers" do
       mail.subject.should eq("Cloud Gephi - Password reset")
       mail.to.should eq([user.email])
-      mail.from.should eq(["from@example.com"])
+      mail.from.should eq(["noreply@gephi.org"])
       mail.body.encoded.should match(edit_password_reset_path(user.password_reset_token)) 
     end
 

@@ -4,8 +4,10 @@ describe Graph do
   let(:user) { FactoryGirl.create(:user) }
 
   before { @graph = user.graphs.build(description: "Lorem ipsum",  
-                     source: "http://www.example.com/#{:user_id}/source",
-                     image: "http://www.example.com/#{:user_id}/image")}
+                     #image: "http://www.example.com/#{:user_id}/image",
+                     source: File.open(ENV['PWD'] + "/README.md"))}
+
+  after { @graph.source.remove! }
 
   subject { @graph }
 
@@ -25,14 +27,14 @@ describe Graph do
   end
 
   describe "when source is not present" do
-    before { @graph.source = nil }
+    before { @graph.source.remove! }
     it { should_not be_valid }
   end
 
-  describe "when image is not present" do
-    before { @graph.image = nil }
-    it { should_not be_valid }
-  end
+  # describe "when image is not present" do
+  #   before { @graph.image = nil }
+  #   it { should_not be_valid }
+  # end
 
   describe "with description that is too long" do
     before { @graph.description = "a" * 501 }

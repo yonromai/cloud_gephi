@@ -3,7 +3,14 @@
   <span class="user">
     <%= link_to feed_item.user.name, feed_item.user %> 
   </span>
-  <span class="graphimage"><%= image_tag(feed_item.image, width: "512") %></span> 
+  <br/>
+  <span class="graphimage">
+    <% if feed_item.image.nil? %>
+      <%= image_tag "rendering_graph.gif" %>
+    <% else %>
+      <%= image_tag(feed_item.image, width: "512") %>
+    <% end %>
+  </span>
   <span class="content"><%= feed_item.description %></span> 
   <span class="timestamp">
     Posted <%= time_ago_in_words(feed_item.created_at) %> ago. 

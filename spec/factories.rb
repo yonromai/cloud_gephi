@@ -12,7 +12,7 @@ FactoryGirl.define do
 
   factory :graph do
     description "Lorem ipsum"  
-    source "http://www.example.com/#{@user}/source"
+    source File.open(ENV['PWD'] + "/README.md")
     image "http://www.example.com/#{@user}/image"
     user
   end
