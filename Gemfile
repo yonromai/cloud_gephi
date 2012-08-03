@@ -11,6 +11,8 @@ gem "carrierwave"
 gem "fog", "~> 1.3.1"
 gem "sidekiq"
 gem "aws-sdk"
+gem 'sinatra', require: false
+gem 'slim'
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'

@@ -5,6 +5,9 @@ class GraphRenderingWorker
   def perform
     queue = Queue.new :jobs
     msg = queue.dequeue_message
+    if msg.nil?
+      raise
+    end
     dict = ActiveSupport::JSON.decode(msg.body)
     usr = User.find(dict["params"]["user_id"])
     graph = usr.graphs.find(dict["params"]["graph_id"])

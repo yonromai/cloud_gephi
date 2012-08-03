@@ -1,6 +1,11 @@
+require 'sidekiq/web'
+
 CloudGephi::Application.routes.draw do
 
-
+  constraint = lambda { |request| request.cookies["remember_token"].present? and User.find_by_remember_token(request.cookies["remember_token"]).admin? }
+  constraints constraint do
+    mount Sidekiq::Web, at: '/sidekiq'
+  end
 
   resources :users do
     member do
