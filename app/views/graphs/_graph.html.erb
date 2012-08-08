@@ -4,7 +4,7 @@
     <% if graph.image.nil? %>
       <%= image_tag "rendering_graph.gif" %>
     <% else %>
-      <%= image_tag(graph.image, width: "512") %>
+      <%= image_tag(graph.image + ".thumb.png") %>
     <% end %>
   </span>
   <span class="timestamp">

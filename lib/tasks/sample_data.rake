@@ -14,7 +14,7 @@ def make_users
                        password_confirmation: "foobar")
 
   admin.toggle!(:admin)
-  99.times do |n|
+  30.times do |n|
     name  = Faker::Name.name
     email = "example-#{n+1}@example.org"
     password  = "password"
@@ -27,11 +27,16 @@ end
 
 def make_graphs
   users = User.all(limit: 6)
-  50.times do
+  25.times do
     description = Faker::Lorem.sentence(5)
-    users.each { |user| user.graphs.create!(description: description,
-                                            image: "https://gephi.org/wp-content/themes/gephi/images/screenshots/layout2.png",
-                                            source: "https://gephi.org/datasets/eurosis.gexf.zip") }
+    file = File.open(ENV['PWD'] + "/spec/resources/sample.gexf")
+    users.each do |user| 
+      graph = user.graphs.build(
+                        description: description,
+                        source: file)
+      graph.image = "https://s3.amazonaws.com/dev-cloudgephi/users/testUser/graphs/42/sample"
+      graph.save!
+    end
   end 
 end
 

@@ -3,7 +3,7 @@ class GraphRenderingWorker
   include SqsHelper
 
   def perform
-    queue = Queue.new :jobs
+    queue = Queue.new :callback
     msg = queue.dequeue_message
     if msg.nil?
       raise
@@ -11,7 +11,7 @@ class GraphRenderingWorker
     dict = ActiveSupport::JSON.decode(msg.body)
     usr = User.find(dict["params"]["user_id"])
     graph = usr.graphs.find(dict["params"]["graph_id"])
-    graph.image = "https://gephi.org/wp-content/themes/gephi/images/screenshots/layout2.png"
+    graph.image = "https://s3.amazonaws.com/dev-cloudgephi/users/%s/graphs/%s/%s" % [dict["params"]["user_id"], dict["params"]["graph_id"], dict["params"]["graph_name"]]
     graph.save!
     msg.delete
   end

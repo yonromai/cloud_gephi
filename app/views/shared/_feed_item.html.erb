@@ -8,7 +8,7 @@
     <% if feed_item.image.nil? %>
       <%= image_tag "rendering_graph.gif" %>
     <% else %>
-      <%= image_tag(feed_item.image, width: "512") %>
+      <%= image_tag(feed_item.image + ".thumb.png") %>
     <% end %>
   </span>
   <span class="content"><%= feed_item.description %></span> 

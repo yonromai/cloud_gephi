@@ -5,7 +5,7 @@ describe Graph do
 
   before { @graph = user.graphs.build(description: "Lorem ipsum",  
                      #image: "http://www.example.com/#{:user_id}/image",
-                     source: File.open(ENV['PWD'] + "/README.md"))}
+                     source: File.open(ENV['PWD'] + "/spec/resources/sample.gexf"))}
 
   after { @graph.source.remove! }
 
