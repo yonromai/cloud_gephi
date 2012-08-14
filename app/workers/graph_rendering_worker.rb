@@ -1,8 +1,7 @@
 class GraphRenderingWorker
   include Sidekiq::Worker
   include SqsHelper
-  include ActionMailer
-
+  
   def perform
     queue = Queue.new :callback
     msg = queue.dequeue_message
