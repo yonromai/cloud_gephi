@@ -1,10 +1,11 @@
 class Graph < ActiveRecord::Base
-  attr_accessible :description, :source
+  attr_accessible :description, :source, :name
   belongs_to :user
   
   validates :description, length: { maximum: 500 }
   validates :user_id, presence: true
   validates :source, presence: true
+  validates :name, length: { maximum: 150 }, presence: true
 
   mount_uploader :source, GraphFileUploader
 

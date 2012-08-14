@@ -5,10 +5,20 @@ class GraphsController < ApplicationController
   before_filter :signed_in_user, only: [:create, :destroy]
   before_filter :correct_user, only: :destroy
 
+  def show
+    @graph = Graph.find(params[:id])
+  end
+
+  def new
+    if signed_in?
+      @graph = current_user.graphs.build
+    end
+  end
+
   def create
     @graph = current_user.graphs.build(params[:graph])
     if @graph.save
-      flash[:success] = "Graph created!"
+      flash[:success] = "Graph created! You'll receive and email when your graph is ready :)"
       queue = Queue.new :jobs
       @graph.source.url =~ /.*\/([^\/]+)\.([^\/\.]+)$/
       graph_name = $1
@@ -19,6 +29,7 @@ class GraphsController < ApplicationController
                                         graph_name: graph_name, 
                                         graph_format: graph_format})
       GraphRenderingWorker.perform_async
+      # UserMailer.graph_ready(current_user, @graph).deliver
       redirect_to root_path
     else
       @feed_items = []

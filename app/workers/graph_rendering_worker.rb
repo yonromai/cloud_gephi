@@ -1,6 +1,7 @@
 class GraphRenderingWorker
   include Sidekiq::Worker
   include SqsHelper
+  include ActionMailer
 
   def perform
     queue = Queue.new :callback
@@ -14,5 +15,6 @@ class GraphRenderingWorker
     graph.image = "https://s3.amazonaws.com/dev-cloudgephi/users/%s/graphs/%s/%s" % [dict["params"]["user_id"], dict["params"]["graph_id"], dict["params"]["graph_name"]]
     graph.save!
     msg.delete
+    UserMailer.graph_ready(usr, graph).deliver
   end
 end

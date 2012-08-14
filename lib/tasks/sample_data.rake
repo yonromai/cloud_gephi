@@ -28,10 +28,12 @@ end
 def make_graphs
   users = User.all(limit: 6)
   25.times do
+    name = 'Fake Graph'
     description = Faker::Lorem.sentence(5)
     file = File.open(ENV['PWD'] + "/spec/resources/sample.gexf")
     users.each do |user| 
       graph = user.graphs.build(
+                        name: name,
                         description: description,
                         source: file)
       graph.image = "https://s3.amazonaws.com/dev-cloudgephi/users/testUser/graphs/42/sample"

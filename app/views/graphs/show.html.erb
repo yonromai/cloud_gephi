@@ -1,0 +1,56 @@
+<% provide(:title, @graph.name) %>
+<h1 class="center" style="padding:7px;"><%= @graph.name %></h1>
+<span class="graphimage">
+  <% if @graph.image.nil? %>
+    <%= image_tag "rendering_graph.gif" %>
+  <% else %>
+    <%= image_tag(@graph.image + ".png") %>
+  <% end %>
+</span>
+<div class="row">
+  <div class="span5">
+    <%= link_to gravatar_for(@graph.user), @graph.user %> 
+    <span class="user">
+      <h3><%= link_to @graph.user.name, @graph.user %> </h3>
+    </span>
+    <br/>
+    <span class="timestamp">
+      Posted <%= time_ago_in_words(@graph.created_at) %> ago. 
+    </span>
+    <% if current_user?(@graph.user) %>
+      <%= link_to "delete", @graph, method: :delete,
+                                       confirm: "You sure?",
+                                       title: @graph.description %>
+    <% end %>
+    <span class="content"><%= link_to "Download Source.", @graph.source_url %></span>
+  </div>
+<!--   <br/> -->
+  <div class="span7">
+  <!-- Sharing part -->
+    <span class='st_facebook_hcount' displayText='Facebook'></span>
+    <span class='st_twitter_hcount' displayText='Tweet'></span>
+    <span class='st_reddit_hcount' displayText='Reddit'></span>
+    <span class='st_linkedin_hcount' displayText='LinkedIn'></span>
+    <span class='st_email_hcount' displayText='Email'></span>
+  </div>
+</div>
+<!-- Description -->
+<h3 style="padding:7px;">Description:</h3>
+<span class="content"><%= @graph.description %></span>
+<!-- Fb Comments -->
+<h3 style="padding:7px;">Comments:</h3>
+<div class="fb-comments" data-href="<%="#{request.protocol}#{request.host_with_port}#{request.fullpath}"=%>" data-num-posts="15" data-width="470"></div>
+<div id="fb-root"></div>
+<!-- Dl Fb sdk -->
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<!-- Dl sharethis stuff -->
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "ur-d1031154-cfb9-7e79-8ccb-96bd8f469942"}); </script>

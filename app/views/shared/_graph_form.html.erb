@@ -1,7 +1,11 @@
 <%= form_for @graph, html: {multipart: true} do |f| %>
-  <%= render 'shared/error_messages', object: f.object %> 
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="content"><h2>Post New Graph</h2></div>
   <div class="field">
-    <%= f.text_field :description, placeholder: "Post New Graph..." %>
+    <%= f.label :name %>
+    <%= f.text_field :name, placeholder: "Graph name..." %>
+    <%= f.label :description %>
+    <%= f.text_field :description, placeholder: "Graph description..." %>
   </div>
   <div>
     <%= f.file_field :source %>

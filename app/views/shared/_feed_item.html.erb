@@ -1,23 +1,26 @@
-<li id="<%= feed_item.id %>">
-  <%= link_to gravatar_for(feed_item.user), feed_item.user %> 
-  <span class="user">
-    <%= link_to feed_item.user.name, feed_item.user %> 
-  </span>
-  <br/>
-  <span class="graphimage">
-    <% if feed_item.image.nil? %>
-      <%= image_tag "rendering_graph.gif" %>
-    <% else %>
-      <%= image_tag(feed_item.image + ".thumb.png") %>
+<div class="span4">
+  <li id="<%= feed_item.id %>">
+    <h3 style="padding:7px;"><%= link_to feed_item.name, feed_item %></h3>
+    <span class="graphimage">
+      <% if feed_item.image.nil? %>
+        <%= image_tag "rendering_graph.gif" %>
+      <% else %>
+        <%= image_tag(feed_item.image + ".thumb.png") %>
+      <% end %>
+    </span>
+    <%= link_to gravatar_for(feed_item.user), feed_item.user %> 
+    <span class="user">
+      <%= link_to feed_item.user.name, feed_item.user %> 
+    </span>
+    <br/>
+    <span class="content"><%= feed_item.description %></span> 
+    <span class="timestamp">
+      Posted <%= time_ago_in_words(feed_item.created_at) %> ago. 
+    </span>
+    <% if current_user?(feed_item.user) %>
+      <%= link_to "delete", feed_item, method: :delete,
+                                       confirm: "You sure?",
+                                       title: feed_item.description %>
     <% end %>
-  </span>
-  <span class="content"><%= feed_item.description %></span> 
-  <span class="timestamp">
-    Posted <%= time_ago_in_words(feed_item.created_at) %> ago. 
-  </span>
-  <% if current_user?(feed_item.user) %>
-    <%= link_to "delete", feed_item, method: :delete,
-                                     confirm: "You sure?",
-                                     title: feed_item.description %>
-  <% end %>
-</li>
+  </li>
+</div>

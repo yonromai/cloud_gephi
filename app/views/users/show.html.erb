@@ -1,24 +1,28 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-  <aside class="span4">
-    <section>
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
-    </section>
-    <section>
-      <%= render 'shared/stats' %> 
-    </section>
-  </aside>
-  <div class="span8">
+  <aside >
+      <div class="span3">
+      <section>
+        <%= render 'shared/user_info' %> 
+      </section>
+      </div>
+      <div class="span3">
+      <section>
+        <%= render 'shared/stats' %> 
+      </section>
+      </div>
+    </aside> 
+</div>
+  <!-- <div class="span8"> -->
     <%= render 'follow_form' if signed_in? %>
     <% if @user.graphs.any? %>
       <h3>Graphs (<%= @user.graphs.count %>)</h3>
-      <ol class="graphs">
-        <%= render @graphs %> 
-      </ol>
+      <div class="row">
+        <ol class="graphs">
+          <%= render @graphs %> 
+        </ol>
+      </div>
       <%= will_paginate @graphs %> 
     <% end %>
-  </div>
-</div>
+  <!-- </div> -->
+<!-- </div> -->

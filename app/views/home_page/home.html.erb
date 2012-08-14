@@ -1,21 +1,30 @@
 <% provide(:title, 'Home') %>
 <% if signed_in? %> 
   <div class="row">
-    <aside class="span4">
+    <aside >
+      <div class="span3">
       <section>
         <%= render 'shared/user_info' %> 
       </section>
+      </div>
+      <div class="span3">
       <section>
         <%= render 'shared/stats' %> 
       </section>
-      <section>
+      </div>
+    </aside>  
+  </div>
+<!--       <section>
         <%= render 'shared/graph_form' %> 
-      </section>
-    </aside>
-    <div class="span8">
-      <h3>Graph Feed</h3>
-      <%= render 'shared/feed' %> </div>
-    </div>
+      </section> -->
+    
+    <!-- <div class="row-fluid"> -->
+      <!-- <div class="row"> -->
+        <h3>Graph Feed</h3>
+        <%= render 'shared/feed' %> 
+      <!-- </div> -->
+    <!-- </div> -->
+  <!-- </div> -->
 <% else %>
   <div class="center hero-unit">
     <h1>Welcome to the Cloud Gephi</h1>

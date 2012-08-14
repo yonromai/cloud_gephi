@@ -10,4 +10,11 @@ class UserMailer < ActionMailer::Base
     @user = user
     mail to: user.email, subject: "Cloud Gephi - Password reset"
   end
+
+  def graph_ready(user, graph)
+    @user = user
+    @graph = graph
+    mail to: user.email, subject: "Cloud Gephi - Graph \"#{graph.name}\" ready"
+  end
+
 end

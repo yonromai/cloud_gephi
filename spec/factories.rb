@@ -11,6 +11,7 @@ FactoryGirl.define do
   end
 
   factory :graph do
+    name "Lorem"
     description "Lorem ipsum"  
     source File.open(ENV['PWD'] + "/README.md")
     image "http://www.example.com/#{@user}/image"
