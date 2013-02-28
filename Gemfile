@@ -26,11 +26,11 @@ end
 # in production environments by default. 
 group :assets do
   gem 'sass-rails',   '3.2.4'
-  gem 'coffee-rails', '3.2.2'
+  gem 'coffee-rails'
   gem 'uglifier', '1.2.3'
 end
 
-#gem 'jquery-rails', '2.0.0'
+gem 'jquery-rails'
 
 group :test do
   gem 'capybara', '1.1.2'
