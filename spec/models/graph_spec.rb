@@ -3,9 +3,11 @@ require 'spec_helper'
 describe Graph do
   let(:user) { FactoryGirl.create(:user) }
 
-  before { @graph = user.graphs.build(description: "Lorem ipsum",  
-                     #image: "http://www.example.com/#{:user_id}/image",
-                     source: File.open(ENV['PWD'] + "/spec/resources/sample.gexf"))}
+  before { @graph = user.graphs.build(
+                    name: "Test Graph",
+                    description: "Test Graph description",  
+                    #image: "http://www.example.com/#{:user_id}/image",
+                    source: File.open(ENV['PWD'] + "/spec/resources/sample.gexf"))}
 
   after { @graph.source.remove! }
 
@@ -31,9 +33,13 @@ describe Graph do
     it { should_not be_valid }
   end
 
-  # describe "when image is not present" do
-  #   before { @graph.image = nil }
-  #   it { should_not be_valid }
+  describe "should not have image at start" do
+    its(:image) { should == nil }
+  end
+
+  # Todo: Mock image generation
+  # describe "Should grab an image after a while" do
+  #   its(:image) { should != nil }
   # end
 
   describe "with description that is too long" do

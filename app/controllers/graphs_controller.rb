@@ -33,7 +33,7 @@ class GraphsController < ApplicationController
       redirect_to root_path
     else
       @feed_items = []
-      render 'home_page/home'
+      render new_graph_path
     end
   end
 

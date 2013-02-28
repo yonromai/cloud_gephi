@@ -148,9 +148,11 @@ describe User do
 
       before do
         @user.follow!(followed_user)
-        3.times { followed_user.graphs.create!(description: "Lorem ipsum",
+        3.times { followed_user.graphs.create!(
+                                              name: "Test Graph",
+                                              description: "Lorem ipsum",
                                               #image: "https://gephi.org/wp-content/themes/gephi/images/screenshots/layout2.png",
-                                              source: File.open(ENV['PWD'] + "/README.md")) }
+                                              source: File.open(ENV['PWD'] + "/spec/resources/sample.gexf")) }
       end
 
       after do

@@ -7,23 +7,25 @@ describe "Graph pages" do
 
   describe "graph creation" do
 
-    before { visit root_path }
+    before { visit new_graph_path }
 
-    # describe "with invalid information" do
-    #   it "should not create a graph" do
-    #     expect { click_button "Post" }.should_not change(Graph, :count)
-    #   end
+    describe "with invalid information" do
+      it "should not create a graph" do
+        expect { click_button "Post Graph" }.should_not change(Graph, :count)
+      end
 
-    #   describe "error messages" do
-    #     before { click_button "Post" }
-    #     it { should have_content('error') }
-    #   end 
-    # end
+      describe "error messages" do
+        before { click_button "Post Graph" }
+        it { should have_content('error') }
+      end 
+    end
 
     describe "with valid information" do
-      before { fill_in 'graph_description', with: "Lorem ipsum" }
+      before { fill_in 'graph_name', with: "Lorem ipsum" }
+      #before { fill_in 'graph_source', with: ENV['PWD'] + "/spec/resources/sample.gexf" }
+      before { attach_file('graph_source', ENV['PWD'] + "/spec/resources/sample.gexf") }
       it "should create a graph" do
-        expect { click_button "Post" }.should change(Graph, :count).by(1)
+        expect { click_button "Post Graph" }.should change(Graph, :count).by(1)
       end
     end 
   end
